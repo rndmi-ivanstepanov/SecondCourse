@@ -39,7 +39,6 @@ public class Slytherin extends Hogwarts {
             return student.getName() + " is better than " + getName() + " in Slytherin";
 
         return getName() + " and " + student.getName() + " are matching";
-
     }
 
     public int getCunning() {
