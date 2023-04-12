@@ -3,7 +3,7 @@ package Course2.HW2;
 public class Main {
     public static void main(String[] args) {
         Gryffindor harryPotter = new Gryffindor("Harry Potter", 70, 50, 100, 40, 20);
-        Gryffindor hermioneGranger = new Gryffindor("Hermione Granger", 80, 90, 50, 30, 20);
+        Gryffindor hermioneGranger = new Gryffindor("Hermione Granger", 80, 90, 100, 40, 20);
         Gryffindor ronWeasley = new Gryffindor("Ron Weasley", 40, 50, 35, 40, 20);
         Slytherin dracoMalfoy = new Slytherin("Draco Malfoy", 60, 50, 90, 80, 30, 100, 30);
         Slytherin grahamMontague = new Slytherin("Graham Montague", 30, 50, 40, 40, 20, 10, 10);

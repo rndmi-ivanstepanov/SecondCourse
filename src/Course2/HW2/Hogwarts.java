@@ -19,8 +19,10 @@ public class Hogwarts {
 
         if (one > another)
             return getName() + " is better than " + student.getName() + " in Hogwarts";
-        else
+        if (another > one)
             return student.getName() + " is better than " + getName() + " in Hogwarts";
+
+        return getName() + " and " + student.getName() + " are matching";
     }
 
     public int getMagicPower() {

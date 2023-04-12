@@ -28,8 +28,10 @@ public class Gryffindor extends Hogwarts {
 
         if (one > another)
             return getName() + " is better than " + student.getName() + " in Gryffindor";
-        else
+        if (another > one)
             return student.getName() + " is better than " + getName() + " in Gryffindor";
+
+        return getName() + " and " + student.getName() + " are matching";
     }
 
     public int getBravery() {

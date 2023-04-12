@@ -28,8 +28,10 @@ public class Hufflepuff extends Hogwarts {
 
         if (one > another)
             return getName() + " is better than " + student.getName() + " in Hufflepuff";
-        else
+        if (another > one)
             return student.getName() + " is better than " + getName() + " in Hufflepuff";
+
+        return getName() + " and " + student.getName() + " are matching";
     }
 
     public int getHardworking() {

@@ -32,8 +32,10 @@ public class Ravenclaw extends Hogwarts {
 
         if (one > another)
             return getName() + " is better than " + student.getName() + " in Ravenclaw";
-        else
+        if (another > one)
             return student.getName() + " is better than " + getName() + " in Ravenclaw";
+
+        return getName() + " and " + student.getName() + " are matching";
     }
 
     public int getIntelligence() {

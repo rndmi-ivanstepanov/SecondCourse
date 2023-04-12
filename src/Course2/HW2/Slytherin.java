@@ -35,8 +35,10 @@ public class Slytherin extends Hogwarts {
 
         if (one > another)
             return getName() + " is better than " + student.getName() + " in Slytherin";
-        else
+        if (another > one)
             return student.getName() + " is better than " + getName() + " in Slytherin";
+
+        return getName() + " and " + student.getName() + " are matching";
 
     }
 
