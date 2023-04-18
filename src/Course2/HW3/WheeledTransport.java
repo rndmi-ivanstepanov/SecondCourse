@@ -1,6 +1,6 @@
 package Course2.HW3;
 
-public class WheeledTransport {
+public abstract class WheeledTransport implements ServiceStation {
     private final String modelName;
     private final int wheelsCount;
 
