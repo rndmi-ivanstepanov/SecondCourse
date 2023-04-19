@@ -1,6 +1,6 @@
 package Course2.HW3;
 
-public class Car extends WheeledTransport {
+public class Car extends WheeledTransport implements EngineService {
 
     public Car(String modelName, int wheelsCount) {
         super(modelName, wheelsCount);
@@ -10,7 +10,8 @@ public class Car extends WheeledTransport {
         System.out.println("Проверяем двигатель");
     }
 
-    public void checkTrailer() {
-        System.out.println("Прицеп отсутствует");
+    public void check() {
+        commonCheck();
+        checkEngine();
     }
 }

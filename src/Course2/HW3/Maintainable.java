@@ -5,8 +5,4 @@ public interface Maintainable {
     void check();
 
     void updateTyre();
-
-    void checkEngine();
-
-    void checkTrailer();
 }
