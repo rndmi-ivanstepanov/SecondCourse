@@ -6,13 +6,11 @@ public class Car extends WheeledTransport {
         super(modelName, wheelsCount);
     }
 
-    @Override
-    public void check() {
-        System.out.println("Обслуживаем " + getModelName());
+    public void checkEngine() {
+        System.out.println("Проверяем двигатель");
+    }
 
-        for (int i = 0; i < getWheelsCount(); i++) {
-            updateTyre();
-        }
-        checkEngine();
+    public void checkTrailer() {
+        System.out.println("Прицеп отсутствует");
     }
 }

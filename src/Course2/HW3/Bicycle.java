@@ -6,12 +6,14 @@ public class Bicycle extends WheeledTransport {
         super(modelName, wheelsCount);
     }
 
-    @Override
-    public void check() {
-        System.out.println("Обслуживаем " + getModelName());
-
-        for (int i = 0; i < getWheelsCount(); i++) {
-            updateTyre();
-        }
+    public void checkEngine() {
+        System.out.println("У мотоцикла нет двигателя");
     }
+
+    @Override
+    public void checkTrailer() {
+        System.out.println("У мотоцикла нет прицепа");
+    }
+
+
 }
