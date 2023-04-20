@@ -1,6 +1,6 @@
 package Course2.HW3;
 
-public class Truck extends WheeledTransport {
+public class Truck extends WheeledTransport implements TrailerService {
 
     public Truck(String modelName, int wheelsCount) {
         super(modelName, wheelsCount);
@@ -12,5 +12,12 @@ public class Truck extends WheeledTransport {
 
     public void checkTrailer() {
         System.out.println("Проверяем прицеп");
+    }
+
+    @Override
+    public void check() {
+        commonCheck();
+        checkEngine();
+        checkTrailer();
     }
 }

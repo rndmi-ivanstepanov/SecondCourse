@@ -6,14 +6,7 @@ public class Bicycle extends WheeledTransport {
         super(modelName, wheelsCount);
     }
 
-    public void checkEngine() {
-        System.out.println("У мотоцикла нет двигателя");
+    public void check() {
+        commonCheck();
     }
-
-    @Override
-    public void checkTrailer() {
-        System.out.println("У мотоцикла нет прицепа");
-    }
-
-
 }

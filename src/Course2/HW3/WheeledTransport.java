@@ -21,16 +21,10 @@ public abstract class WheeledTransport implements Maintainable {
         System.out.println("Меняем резину");
     }
 
-    public void check() {
+    public void commonCheck() {
         System.out.println("Обслуживаем " + getModelName());
 
         for (int i = 0; i < getWheelsCount(); i++)
             updateTyre();
-
-        if (this instanceof Car || this instanceof Truck)
-            checkEngine();
-
-        if (this instanceof Truck)
-            checkTrailer();
     }
 }
