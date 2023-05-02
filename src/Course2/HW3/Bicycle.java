@@ -1,19 +1,12 @@
 package Course2.HW3;
 
-public class Bicycle {
+public class Bicycle extends WheeledTransport {
 
-    public String modelName;
-    public int wheelsCount;
-
-    public void updateTyre() {
-        System.out.println("Меняем покрышку");
+    public Bicycle(String modelName, int wheelsCount) {
+        super(modelName, wheelsCount);
     }
 
-    public String getModelName() {
-        return modelName;
-    }
-
-    public int getWheelsCount() {
-        return wheelsCount;
+    public void check() {
+        commonCheck();
     }
 }
