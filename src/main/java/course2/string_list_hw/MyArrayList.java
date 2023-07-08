@@ -2,6 +2,7 @@ package course2.string_list_hw;
 
 import course2.string_list_hw.exceptions.ElementNotFoundException;
 import course2.string_list_hw.exceptions.IdxOutOfBoundsException;
+import course2.string_list_hw.exceptions.NullItemException;
 
 import java.util.Arrays;
 
@@ -15,12 +16,16 @@ public class MyArrayList implements StringList {
         this.arr = new String[length];
     }
 
+    public MyArrayList() {
+        this.length = 10;
+        this.arr = new String[length];
+    }
+
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder("[");
 
         for (int i = 0; i < size; i++) {
-            builder.append(arr[i]).append(", ");
             builder.append(arr[i]).append(", ");
         }
 
@@ -56,7 +61,6 @@ public class MyArrayList implements StringList {
         System.arraycopy(arr, index, arr, index + 1, size - index);
         arr[index] = item;
         size++;
-
         return item;
     }
 
@@ -69,24 +73,13 @@ public class MyArrayList implements StringList {
 
     @Override
     public String remove(String item) {
-        int i = 0, token = 0;
+        checkItem(item);
+        int index = indexOf(item);
 
-        for (; i < size; i++) {
-
-            if (arr[i].equals(item)) {
-                arr[i] = null;
-                token++;
-                break;
-            }
-        }
-
-        if (token == 0) {
+        if (index == -1) {
             throw new ElementNotFoundException(notFoundMessage(item));
         }
-
-        System.arraycopy(arr, i + 1, arr, i, size - i);
-        size--;
-        return item;
+        return remove(index);
     }
 
     @Override
@@ -168,18 +161,19 @@ public class MyArrayList implements StringList {
 
     @Override
     public String[] toArray() {
-
-        return new String[0];
+        return Arrays.copyOf(arr, size);
     }
 
     private void checkIndex(int index) {
         if (index < 0 || index >= size) {
-            throw new IdxOutOfBoundsException(outOfBoundsMessage(index));
+            throw new IdxOutOfBoundsException("Index " + index + " is out of bounds for length " + size);
         }
     }
 
-    private String outOfBoundsMessage(int index) {
-        return "Index " + index + " is out of bounds for length " + size;
+    private void checkItem(String item) {
+        if (item == null) {
+            throw new NullItemException("Cannot store null");
+        }
     }
 
     private String notFoundMessage(String element) {

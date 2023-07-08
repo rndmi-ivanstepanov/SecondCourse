@@ -1,10 +1,11 @@
 package course2.string_list_hw;
 
+import course2.string_list_hw.exceptions.ElementNotFoundException;
 import course2.string_list_hw.exceptions.IdxOutOfBoundsException;
+import course2.string_list_hw.exceptions.NullItemException;
 import org.junit.jupiter.api.Test;
 
-import static course2.string_list_hw.constants.Constants.STR;
-import static course2.string_list_hw.constants.Constants.STR2;
+import static course2.string_list_hw.constants.Constants.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ArrayListTest {
@@ -38,6 +39,8 @@ class ArrayListTest {
         fill(1);
         out.remove(STR);
         assertTrue(out.isEmpty());
+        assertThrows(NullItemException.class, () -> out.remove(NULL));
+        assertThrows(ElementNotFoundException.class, () -> out.remove(STR));
     }
 
     @Test
