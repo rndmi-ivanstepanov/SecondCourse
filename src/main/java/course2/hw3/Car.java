@@ -1,4 +1,4 @@
-package Course2.HW3;
+package course2.hw3;
 
 public class Car extends WheeledTransport implements EngineService {
 
