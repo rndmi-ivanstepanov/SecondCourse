@@ -38,7 +38,6 @@ public class IntegerList implements IntList {
     @Override
     public Integer add(Integer item) {
         checkItem(item);
-
         growIfNeeded();
         arr[size++] = item;
         return item;
@@ -53,9 +52,8 @@ public class IntegerList implements IntList {
             arr[size++] = item;
             return item;
         }
-
-        growIfNeeded();
         checkIndex(index);
+        growIfNeeded();
 
         System.arraycopy(arr, index, arr, index + 1, size - index);
         arr[index] = item;
