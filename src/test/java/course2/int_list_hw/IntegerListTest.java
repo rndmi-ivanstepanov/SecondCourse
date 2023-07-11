@@ -9,7 +9,7 @@ import static course2.int_list_hw.constants.Constants.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class IntegerListTest {
-    IntList out = new IntegerList();
+    IntegerList out = new IntegerList();
 
     private void fill(IntList arr, int upTo) {
         for (int i = 0; i < upTo; i++) {
@@ -20,10 +20,14 @@ class IntegerListTest {
     @Test
     void testAdd() {
         fill(out, 5);
-        assertEquals(out.get(4), NUM);
+        assertEquals(NUM, out.get(4));
 
         out.add(0, NUM2);
         assertEquals(0, out.indexOf(NUM2));
+
+        out.add(6, ZERO);
+        assertEquals(7, out.size());
+        assertEquals(6, out.indexOf(ZERO));
     }
 
     @Test
@@ -97,5 +101,14 @@ class IntegerListTest {
         out.clear();
         assertTrue(out.isEmpty());
         assertEquals(0, out.size());
+    }
+
+    @Test
+    void testGrow() {
+        fill(out, 11);
+        assertEquals(15, out.getLength());
+        fill(out, 5);
+        double expected = Math.rint(15 * 1.5);
+        assertEquals(expected, out.getLength());
     }
 }
