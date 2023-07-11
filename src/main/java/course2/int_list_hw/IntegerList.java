@@ -37,26 +37,23 @@ public class IntegerList implements IntList {
 
     @Override
     public Integer add(Integer item) {
-
-        if (size == length) {
-            length *= 2;
-            Integer[] newArr = Arrays.copyOf(arr, length);
-            newArr[size] = item;
-            arr = newArr;
-        } else {
-            arr[size] = item;
-        }
-        size++;
+        checkItem(item);
+        growIfNeeded();
+        arr[size++] = item;
         return item;
     }
 
     @Override
     public Integer add(int index, Integer item) {
-        checkIndex(index);
+        checkItem(item);
 
-        if (size == length) {
-            length *= 2;
+        if (index == size) {
+            growIfNeeded();
+            arr[size++] = item;
+            return item;
         }
+        checkIndex(index);
+        growIfNeeded();
 
         System.arraycopy(arr, index, arr, index + 1, size - index);
         arr[index] = item;
@@ -66,6 +63,7 @@ public class IntegerList implements IntList {
 
     @Override
     public Integer set(int index, Integer item) {
+        checkItem(item);
         checkIndex(index);
         arr[index] = item;
         return item;
@@ -94,6 +92,8 @@ public class IntegerList implements IntList {
 
     @Override
     public boolean contains(Integer item) {
+        checkItem(item);
+
         Integer[] copy = toArray();
         sort(copy);
         return binarySearch(copy, item) != -1;
@@ -101,6 +101,7 @@ public class IntegerList implements IntList {
 
     @Override
     public int indexOf(Integer item) {
+        checkItem(item);
 
         for (int i = 0; i < size; i++) {
 
@@ -113,6 +114,7 @@ public class IntegerList implements IntList {
 
     @Override
     public int lastIndexOf(Integer item) {
+        checkItem(item);
 
         for (int i = size - 1; i >= 0; i--) {
 
@@ -204,15 +206,64 @@ public class IntegerList implements IntList {
     }
 
     private void sort(Integer[] arr) {
-        for (int i = 1; i < arr.length; i++) {
-            int temp = arr[i];
-            int j = i;
-
-            while (j > 0 && arr[j - 1] >= temp) {
-                arr[j] = arr[j - 1];
-                j--;
-            }
-            arr[j] = temp;
+        if (arr.length < 2) {
+            return;
         }
+
+        int mid = arr.length / 2;
+        Integer[] left = new Integer[mid];
+        Integer[] right = new Integer[arr.length - mid];
+
+        for (int i = 0; i < left.length; i++) {
+            left[i] = arr[i];
+        }
+
+        for (int i = 0; i < right.length; i++) {
+            right[i] = arr[mid + i];
+        }
+
+        sort(left);
+        sort(right);
+
+        merge(arr, left, right);
+    }
+
+    private void merge(Integer[] arr, Integer[] left, Integer[] right) {
+        int mainPos = 0;
+        int leftPos = 0;
+        int rightPos = 0;
+
+        while (leftPos < left.length && rightPos < right.length) {
+
+            if (left[leftPos] < right[rightPos]) {
+                arr[mainPos++] = left[leftPos++];
+            } else {
+                arr[mainPos++] = right[rightPos++];
+            }
+        }
+
+        while (leftPos < left.length) {
+            arr[mainPos++] = left[leftPos++];
+        }
+
+        while (rightPos < right.length) {
+            arr[mainPos++] = right[rightPos++];
+        }
+    }
+
+    private void grow() {
+        length *= 1.5;
+        arr = Arrays.copyOf(arr, length);
+    }
+
+    private void growIfNeeded() {
+        if (size == length) {
+            grow();
+        }
+
+    }
+
+    int getLength() {
+        return length;
     }
 }
